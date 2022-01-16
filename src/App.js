@@ -3,7 +3,6 @@ import './App.css';
 
 import { Navbar } from './components'
 import { Home, Notif, Schedule, Lists, Account } from './pages'
-//import Test from './pages/Test'
 
 function App() {
   return (
