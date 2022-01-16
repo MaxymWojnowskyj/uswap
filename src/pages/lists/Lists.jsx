@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './lists.css'
 
 
@@ -17,7 +17,27 @@ const Lists = () => {
     const [className, setClassName] = useState()
     const [classCode, setClassCode] = useState()
     const [loadedClasses, setLoadedClasses] = useState([])
+    const [loadedOffers, setLoadedOffers] = useState([])
+    const [loadedWants, setLoadedWants] = useState([])
+    /*
+    useEffect(() => {
+        const getOWLists = async () => {
+            const pulledLists = await fetchOWLists()
+            setLoadedOffers(pulledLists.Offers)
+            setLoadedOffers(pulledLists.Wants)
+        }
 
+        getOWLists()
+
+    }, [loadedOffers, loadedWants]) //update the users offers and wants lists in the database when the user updates them in the page
+    
+    const fetchOWLists = async () => {
+        const response = await fetch('url')
+        const data = await response.json()
+        return data
+    }
+    */
+   
     const searchClass = async () => {
         console.log("Class Sem:", classSem)
         console.log(className)
@@ -29,30 +49,39 @@ const Lists = () => {
         let json = await response.json() 
         console.log(json)
 
-        //setLoadedClasses()
         setLoadedClasses([...loadedClasses, ...json])
-        
-        /*for (var key in json) {
-            console.log(key)
-            console.log(json[key])
-            setLoadedClasses([...loadedClasses, json[key]])
-            console.log(loadedClasses)
+
+    }
+
+    const addClass = (e) => {
+        //grab index of btn id (OfferID): O0, O1, O2, etc
+        let selected_class = loadedClasses[e.target.id[1]]
+        let offer_or_want = e.target.id[0] 
+    }
+
+    const delListItem = async (e) => {
+        console.log(e.target)
+
+        let selected_class = loadedClasses[e.target.id[1]]
+        let offer_or_want = e.target.id[0]
+        /*
+        const response = await fetch('url', {
+            method: 'DELETE'
+        })
+
+        if (response.status !== '200') {
+            alert('Delete request failed, please try again')
+        } else {
+            //delete request went through successfully go back to useEffect so the lists can be refreshed
+            //if offer_or_want == offer
+            //setLoadedOffers()
         }*/
 
 
 
-    }
 
-    const offerAdd = (e) => {
-        console.log(e.target.id)
-    }
 
-    const wantAdd = (e) => {
-        console.log(e.target.id)
-    }
-
-    const delListItem = (e) => {
-        console.log(e.target)
+        
     }
 
     return (
@@ -90,8 +119,8 @@ const Lists = () => {
                                 <td>{`${_class.Days} ${_class.Start} - ${_class.Finish}`}</td>
                                 <td>{_class.Primary_Instructor}</td>
                                 <td>
-                                    <button id={'O'+index} onClick={offerAdd}>Offer</button>
-                                    <button id={'W'+index} onClick={wantAdd} >Want</button>
+                                    <button id={'O'+index} onClick={addClass}>Offer</button>
+                                    <button id={'W'+index} onClick={addClass} >Want</button>
                                 </td>
                             </tr>
                         ))}
