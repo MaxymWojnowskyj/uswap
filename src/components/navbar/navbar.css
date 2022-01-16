@@ -12,15 +12,15 @@
 }
 .nameStyle {
     position: absolute;
-    right: 65;
-    top: 10;
+    right: 65px;
+    top: 10px;
     display: inline-block;
     color: white;
 }
 .userStyle {
     position: absolute;
-    right: 10;
-    top: 10;
+    right: 10px;
+    top: 10px;
     display: inline-block;
 }
 .iconStyle {
