@@ -136,10 +136,10 @@ const Lists = () => {
         console.log(selected_class)
         
         for (var offer in loadedOffers) {
-            let enr_title = selected_class.Title
+            let want_title = selected_class.Title
             let offer_title = loadedOffers[offer].Title
-            console.log(enr_title, offer_title)
-            const response = await fetch(`https://class-swap.df.r.appspot.com/add_swap_request/${user.email}/${offer_title}/${enr_title}`)
+            console.log(want_title, offer_title)
+            const response = await fetch(`https://class-swap.df.r.appspot.com/add_swap_request/${user.email}/${offer_title}/${want_title}`)
             console.log(response)
         
         }
