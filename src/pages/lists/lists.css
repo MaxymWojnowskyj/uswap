@@ -1,0 +1,125 @@
+* {
+    outline: none;
+}
+.classSearchDiv {
+    position: absolute;
+    top: 11%;
+    height: 10%;
+    width: 40%;
+    /*border: 1px solid yellowgreen;*/
+    margin-left: 5px;
+    text-align: center;
+    color: var(--text-colour);
+    
+}
+.searchInputsDiv {
+    margin-top: 12px;
+}
+
+#sem_select {
+    width: 150px;
+    margin-right: 20px;
+}
+
+input {
+    height: 23px;
+    width: 100px;
+    margin-right: 20px;
+    padding-left: 5px;
+}
+
+
+#sem_select {
+    height: 25px;
+    width: 100px;
+    border-radius: 4px;
+}
+
+.foundClasses {
+    position: absolute;
+    top: 21%;
+    left: 1%;
+    overflow-y: auto;
+    height: 400px;
+    width: 40%;
+    
+}
+.foundClasses thead {
+    background-color: var(--inpt-colour);
+}
+.foundClasses thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+table {
+    border-collapse: collapse;
+    font-size: small;
+    color: var(--text-colour);
+    
+}
+
+th, td {
+    padding: 8px 14px;
+
+    
+}
+tr {
+    background: var(--inpt-colour);
+    border: solid var(--bg-colour);
+    border-width: 10px 0;
+    line-height: 15px;
+
+}
+
+th {
+    background: var(--inpt-colour);
+}
+select {
+    color: var(--text-colour);
+    background: var(--inpt-colour); 
+    height: 50px;
+}
+button {
+    color: var(--text-colour);
+    background: #121424; 
+    height: 25px;
+    width: 100px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0); 
+    border-radius: 4px;
+    border: none;
+}
+
+.listsDiv {
+    width: 57%;
+    height: 90%;
+    position: absolute;
+    left: 42%;
+}
+.ofListDiv {
+    margin-top: 45px;
+    width: 49%;
+    height: 100%;
+    text-align: center;
+ 
+}
+.listLabel {
+    color: var(--text-colour);
+    margin-top: 10px;
+}
+.listTable {
+    font-size: 10px;
+    table-layout:fixed;
+    width:100%;
+}
+.listDel {
+    width: 30px;
+}
+.wntListDiv {
+    text-align: center;
+    position: relative;
+    top: -100%;
+    left: 52%;
+    width: 49%;
+    height: 100%;
+}
