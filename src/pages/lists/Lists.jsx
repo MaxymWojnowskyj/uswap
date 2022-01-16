@@ -12,6 +12,11 @@ const options = [
 
 //let loadedClasses = []
 
+
+const outterDivStyle = {
+    paddingTop: 20,
+}
+
 const Lists = () => {
     const [classSem, setClassSem] = useState()
     const [className, setClassName] = useState()
@@ -30,14 +35,14 @@ const Lists = () => {
         getOWLists()
 
     }, [loadedOffers, loadedWants]) //update the users offers and wants lists in the database when the user updates them in the page
-    
+
     const fetchOWLists = async () => {
         const response = await fetch('url')
         const data = await response.json()
         return data
     }
     */
-   
+
     const searchClass = async () => {
         console.log("Class Sem:", classSem)
         console.log(className)
@@ -45,8 +50,8 @@ const Lists = () => {
         setLoadedClasses([])
 
         const response = await fetch(`https://class-swap.df.r.appspot.com/search/${className.toUpperCase().replace(/ /g, '')}%20${classCode.replace(/ /g, '')}`)//, {
-        
-        let json = await response.json() 
+
+        let json = await response.json()
         console.log(json)
 
         setLoadedClasses([...loadedClasses, ...json])
@@ -56,7 +61,7 @@ const Lists = () => {
     const addClass = (e) => {
         //grab index of btn id (OfferID): O0, O1, O2, etc
         let selected_class = loadedClasses[e.target.id[1]]
-        let offer_or_want = e.target.id[0] 
+        let offer_or_want = e.target.id[0]
     }
 
     const delListItem = async (e) => {
@@ -81,11 +86,11 @@ const Lists = () => {
 
 
 
-        
+
     }
 
     return (
-        <div>
+        <div style={outterDivStyle}>
             <div className='classSearchDiv'>
                 <label>Class Search:</label>
                 <div className='searchInputsDiv'>
@@ -108,7 +113,7 @@ const Lists = () => {
                             <th>Class</th>
                             <th>Time</th>
                             <th>Instructor</th>
-                            <th>Actions</th> 
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -125,7 +130,7 @@ const Lists = () => {
                             </tr>
                         ))}
                         {/*<tr>
-                            <td>Lec</td> 
+                            <td>Lec</td>
                             <td>Cmput 201, B1</td>
                             <td>10:00-11:50</td>
                             <td>Guohui Lin</td>
@@ -134,7 +139,7 @@ const Lists = () => {
                                 <button id="W1" onClick={wantAdd} >Want</button>
                             </td>
                         </tr>*/}
-                    
+
                     </tbody>
                 </table>
             </div>
@@ -148,7 +153,7 @@ const Lists = () => {
                             <th>Class</th>
                             <th>Time</th>
                             <th>Instructor</th>
-                            <th>Actions</th> 
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -171,7 +176,7 @@ const Lists = () => {
                             <td>Guohui Lin</td>
                             <td>
                                 <button className='listDel' >X</button>
-                            </td> 
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -185,7 +190,7 @@ const Lists = () => {
                             <th>Class</th>
                             <th>Time</th>
                             <th>Instructor</th>
-                            <th>Actions</th> 
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -196,7 +201,7 @@ const Lists = () => {
                             <td>Guohui Lin</td>
                             <td>
                                 <button className='listDel'>X</button>
-                            </td> 
+                            </td>
                         </tr>
                     </tbody>
                 </table>
