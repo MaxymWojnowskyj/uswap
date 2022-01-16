@@ -18,8 +18,7 @@ const outterDivStyle = {
 }
 
 const Lists = () => {
-    //const { user } = useAuth0()
-    const user = {'email': 'maxym4726@gmail.com'}
+    const { user } = useAuth0()
     const [classSem, setClassSem] = useState()
     const [className, setClassName] = useState()
     const [classCode, setClassCode] = useState()
