@@ -1,0 +1,29 @@
+.navLogo {
+    width: 130px;
+    height: 36px;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+}
+.linkStyle {
+    margin: 1rem;
+    text-decoration: none;
+    color: white;
+}
+.nameStyle {
+    position: absolute;
+    right: 65;
+    top: 10;
+    display: inline-block;
+    color: white;
+}
+.userStyle {
+    position: absolute;
+    right: 10;
+    top: 10;
+    display: inline-block;
+}
+.iconStyle {
+    width: 45;
+    height: 45;
+}

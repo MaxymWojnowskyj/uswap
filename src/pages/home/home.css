@@ -1,0 +1,30 @@
+.main {
+    margin: auto;
+    margin-top: 5%;
+    padding-top: 70px;
+    position: relative;
+    height: 1000%;
+    width: 70%;
+    /*position: absolute;
+    top: 20%;
+    left: 10%;
+    height: 60%;
+    width: 70%;*/
+    /*border: 2px solid slateblue;*/
+    border-radius: 5px;
+    color: var(--text-colour);
+}
+img {
+    height: 75px;
+    width: 250px;
+    margin-bottom: 10px;
+}
+h3, h6 {
+    margin-bottom: 10px;
+}
+.logBtn {
+    height: 40px;
+    width: 120px;
+    background-color: slateblue;
+    margin-bottom: 20px;
+}
