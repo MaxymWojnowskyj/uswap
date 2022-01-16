@@ -2,6 +2,8 @@
 
 ## U-swap is a platform to help students register for the courses they want but are currently full. U-swap finds students who want each-other's classes and connects them through online chat.
 
+https://uswap-ua.herokuapp.com/
+
 <br><br>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
