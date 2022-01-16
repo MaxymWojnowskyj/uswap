@@ -3,6 +3,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import logo from './UswapLogoTrans.png';
+import Login from '../login/Login'
 
 //const NavLink = styled.ul
 
@@ -24,6 +25,7 @@ const Navbar = () => {
     return (
         <>
             <img src={logo} style={logoStyle}/>
+            <Login />
             <Link style={linkStyle} to='/'>
                 Home
             </Link>

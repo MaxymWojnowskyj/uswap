@@ -3,7 +3,7 @@
 }
 .classSearchDiv {
     position: absolute;
-    top: 11%;
+    top: 14%;
     height: 10%;
     width: 40%;
     /*border: 1px solid yellowgreen;*/
@@ -37,7 +37,7 @@ input {
 
 .foundClasses {
     position: absolute;
-    top: 21%;
+    top: 25%;
     left: 1%;
     overflow-y: auto;
     height: 400px;
