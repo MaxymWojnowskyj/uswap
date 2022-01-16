@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './lists.css'
-
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 
@@ -18,30 +18,63 @@ const outterDivStyle = {
 }
 
 const Lists = () => {
+    const { user } = useAuth0()
     const [classSem, setClassSem] = useState()
     const [className, setClassName] = useState()
     const [classCode, setClassCode] = useState()
     const [loadedClasses, setLoadedClasses] = useState([])
     const [loadedOffers, setLoadedOffers] = useState([])
     const [loadedWants, setLoadedWants] = useState([])
+
+    const fetchOWLists = async () => {
+        const response = await fetch('https://class-swap.df.r.appspot.com/get_user_swaps/'+user.email)
+        const data = await response.json()
+        return data
+    }
+
+    async function updateUserLists() {
+        
+        console.log(user && user.email)
+        const pulledLists = await fetchOWLists()
+        if (pulledLists !== []) {
+            setLoadedOffers(pulledLists.Offers)
+            setLoadedWants(pulledLists.Wants)
+        }
+   
+    }
+
+    function waitForUser(){
+        if(typeof user !== "undefined"){
+            updateUserLists() 
+        } else setTimeout(waitForUser, 250);
+        
+    }
+
+    waitForUser()
+   
+
     /*
     useEffect(() => {
+        console.log(user && user.email)
         const getOWLists = async () => {
             const pulledLists = await fetchOWLists()
-            setLoadedOffers(pulledLists.Offers)
-            setLoadedOffers(pulledLists.Wants)
+            console.log(pulledLists)
+            if (pulledLists == []) {
+                setLoadedOffers([])
+                setLoadedOffers([])
+            } else {
+                setLoadedOffers(pulledLists.Offers)
+                setLoadedWants(pulledLists.Wants)
+            }    
         }
 
         getOWLists()
 
-    }, [loadedOffers, loadedWants]) //update the users offers and wants lists in the database when the user updates them in the page
-
-    const fetchOWLists = async () => {
-        const response = await fetch('url')
-        const data = await response.json()
-        return data
-    }
+    }, [user]) //update the users offers and wants lists in the database when the user updates them in the page
+        
     */
+        
+ 
 
     const searchClass = async () => {
         console.log("Class Sem:", classSem)
@@ -50,18 +83,52 @@ const Lists = () => {
         setLoadedClasses([])
 
         const response = await fetch(`https://class-swap.df.r.appspot.com/search/${className.toUpperCase().replace(/ /g, '')}%20${classCode.replace(/ /g, '')}`)//, {
-
-        let json = await response.json()
+        
+        let json = await response.json() 
         console.log(json)
 
         setLoadedClasses([...loadedClasses, ...json])
 
     }
-
+    /*
     const addClass = (e) => {
         //grab index of btn id (OfferID): O0, O1, O2, etc
         let selected_class = loadedClasses[e.target.id[1]]
         let offer_or_want = e.target.id[0]
+        
+        
+    }*/
+    const addEnroll = async (e) => {
+        
+        //grab index of btn id (OfferID): O0, O1, O2, etc
+        let selected_class = loadedClasses[e.target.id[1]]
+        console.log(selected_class)
+
+        //make a submission with the added enrolled with every single want as a 1x1
+        /*
+        loadedWants.forEach(want => {
+            console.log('Waaaaa:', want)
+        }) 
+        */
+        
+        for (var want in loadedWants) {
+            let enr_title = selected_class.Title
+            let want_title = loadedWants[want].Title
+            console.log(enr_title, want_title)
+            const response = await fetch(`https://class-swap.df.r.appspot.com/add_swap_request/${user.email}/<GIVE_TITLE>/<GET_TITLE>`)
+
+        
+        }
+        setLoadedOffers(...loadedOffers, selected_class)
+
+        
+        
+    }
+    const addWant = (e) => {
+        //grab index of btn id (WantID): W0, W1, W2, etc
+        let selected_class = loadedClasses[e.target.id[1]]
+        console.log(selected_class) 
+        
     }
 
     const delListItem = async (e) => {
@@ -86,8 +153,8 @@ const Lists = () => {
 
 
 
-
-    }
+        
+    } 
 
     return (
         <div style={outterDivStyle}>
@@ -124,8 +191,8 @@ const Lists = () => {
                                 <td>{`${_class.Days} ${_class.Start} - ${_class.Finish}`}</td>
                                 <td>{_class.Primary_Instructor}</td>
                                 <td>
-                                    <button id={'O'+index} onClick={addClass}>Offer</button>
-                                    <button id={'W'+index} onClick={addClass} >Want</button>
+                                    <button id={'O'+index} onClick={(e) => addEnroll(e)}>Offer</button>
+                                    <button id={'W'+index} onClick={(e) => addWant(e)} >Want</button>
                                 </td>
                             </tr>
                         ))}
