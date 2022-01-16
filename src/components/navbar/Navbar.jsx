@@ -2,6 +2,7 @@ import React from 'react';
 
 
 import { Link } from 'react-router-dom';
+import logo from './UswapLogoTrans.png';
 
 //const NavLink = styled.ul
 
@@ -11,9 +12,18 @@ const linkStyle = {
     color: 'white'
 }
 
+const logoStyle = {
+  width: 130,
+  height: 36,
+  position: "absolute",
+  left: 15,
+  top: 15
+}
+
 const Navbar = () => {
     return (
         <>
+            <img src={logo} style={logoStyle}/>
             <Link style={linkStyle} to='/'>
                 Home
             </Link>
@@ -28,8 +38,8 @@ const Navbar = () => {
             </Link>
             <Link style={linkStyle} to='/account'>
                 Account
-            </Link> 
-        </>	
+            </Link>
+        </>
     );
 };
 
